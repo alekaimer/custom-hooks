@@ -1,22 +1,36 @@
-import './App.css'
-import { User } from './dtos/User'
-import useFetch from './hooks/useFetch'
+import AppToggle from './howToUseUseToggle'
+import AppToggleBoolean from './howToUseUseToggleBoolean'
+import AppFetch from './howToUseUseFetch'
+import AppLocalStorage from './howToUseUseLocalStorage'
+import AppAsync from './howToUseUseAsync'
+
+const render = [
+  { id: 'toggle', App: <AppToggle /> },
+  { id: 'toggleBoolean', App: <AppToggleBoolean /> },
+  { id: 'fetch', App: <AppFetch /> },
+  { id: 'localStorage', App: <AppLocalStorage /> },
+  { id: 'async', App: <AppAsync /> },
+]
 
 function App() {
-  const { loading, error, data } = useFetch<User[]>(
-    'https://jsonplaceholder.typicode.com/users',
-  )
-
-  if (loading) return <div>Loading...</div>
-
-  if (error) return <div>Error</div>
-
   return (
-    <ul className="App">
-      {data?.map((user: User) => (
-        <li key={user.id}>{user.name}</li>
-      ))}
-    </ul>
+    <div>
+      <section>
+        <AppToggle />
+      </section>
+      <section>
+        <AppToggleBoolean />
+      </section>
+      <section>
+        <AppFetch />
+      </section>
+      <section>
+        <AppLocalStorage />
+      </section>
+      <section>
+        <AppAsync />
+      </section>
+    </div>
   )
 }
 
